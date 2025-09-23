@@ -3,8 +3,6 @@
 This script downloads selected **NCBI** genomes, runs **OrthoFinder** to find orthology/HOGs, extracts **AstR** ortholog protein sequences, aligns them with **MUSCLE**, infers a **RAxML** tree, then **relabels leaf names** for clean visualization in **iTOL**.  
 It uses helper utilities from `jw_utils` and `orthofinder_utils`.  
 
-Biopython’s `Phylo` handles Newick I/O; iTOL accepts Newick uploads and annotation datasets. ([Biopython Tutorial](https://biopython.org/docs/latest/Tutorial/chapter_phylo.html))
-
 ---
 
 ## What It Does (Pipeline)
