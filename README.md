@@ -5,7 +5,7 @@ It uses helper utilities from `jw_utils` and `orthofinder_utils`.
 
 ---
 
-## What It Does (Pipeline)
+# What It Does (Pipeline)
 
 1. **Clone utilities** (`jw_utils`, `orthofinder_utils`) and import helpers.  
 2. **Download NCBI metadata & files** for the assemblies in `figure_genome_assemblies`; write a summary DataFrame. Uses NCBI Datasets CLI-backed workflow and moves `GFF`/proteomes into project dirs.  
@@ -18,6 +18,41 @@ It uses helper utilities from `jw_utils` and `orthofinder_utils`.
 
 ---
 
-## Project Layout (Key Paths Used)
+
+## Requirements
+
+- **Python 3** with **Biopython** (`Bio.Phylo`)  
+- **MUSCLE** (in `PATH`) for alignment  
+- **RAxML** binary compatible with the wrapper (`ef.run_raxml`)  
+- **OrthoFinder** (≥ v2.4) for orthogroup/HOG inference  
+- **NCBI Datasets CLI** if running full download  
+
+> Also requires local modules:
+> * `jw_utils` — itol / ncbi / FASTA helpers  
+> * `orthofinder_utils` — parsers and OrthoFinder runner  
+> * `external_functions` — wrappers for MUSCLE, RAxML, etc.
+
+---
+
+## How to Run
+
+1. Activate your project environment (conda/venv) with all tools installed.  
+2. Execute the script (adjusting or removing notebook-specific lines like `get_ipython()`).  
+3. Outputs you should obtain:
+   - `summary_data/AssemblyAccession_to_SpeciesName.json`
+   - `astR_orthologs.faa` and `*.muscle.aln`
+   - `raxML_output/RAxML_bipartitionsBranchLabels.AstR`
+   - `itol_annotations/RELABLE_RAxML_bipartitionsBranchLabels.astR`
+4. Upload the relabeled Newick file to **iTOL** via the Upload interface. Use iTOL’s tools to style labels, branch support, etc.
+
+---
+
+## Notable Implementation Details
+
+- **Biopython Phylo** used to read Newick trees; `tree.get_terminals()` gives leaf nodes.  
+- **RAxML outputs**:
+  * `RAxML_bestTree.*` — best topology  
+  * `RAxML_bipartitions.*` — includes support values  
+  * `RAxML_bipartitionsBranchLabels.*` — supports embedded as branch labels  
 
 
