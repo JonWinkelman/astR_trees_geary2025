@@ -39,15 +39,15 @@ It uses helper utilities from `jw_utils` and `orthofinder_utils`.
 1. Create an environment from `environment.yml`  
    `conda env create -f environment.yml`  
    `conda activate Geary_astR_trees`  
-2. Open jupyter-lab notebook in terminal. Will run on your default browser.
+2. Open jupyter-lab notebook in terminal. Will run on your default browser.  
    `jupyter-lab`
-3. In the jupyter notebook tab on your browser, open the notebook entitled: "orthofinder_raxML.ipynb"
+3. In the jupyter notebook tab on your browser, open the notebook entitled: "orthofinder_raxML.ipynb"  
    
 4. Main outputs:  
-   *Newick Tree:*
+   *Newick Tree:*  
    - `raxML_tree/raxML_output/RAxML_bipartitionsBranchLabels.AstR`  
    *iTOL Annotation File:*  
-   - `raxML_tree/itol_annotations/RELABLE_RAxML_bipartitionsBranchLabels.astR`
+   - `raxML_tree/itol_annotations/RELABLE_RAxML_bipartitionsBranchLabels.astR`  
 6. Upload the  Newick file to **iTOL** via the Upload interface.
 7. Upload itol annotation file to relable leaves.
    - manually re-root tree on yersinia enterobacter branch.  
