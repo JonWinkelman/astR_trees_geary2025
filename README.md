@@ -41,7 +41,7 @@ It uses helper utilities from `jw_utils` and `orthofinder_utils`.
    `conda activate Geary_astR_trees`  
 2. Open jupyter-lab notebook in terminal. Will run on your default browser.
    `jupyter-lab`
-3. In the jupyter notebook tab on your browser, open the notebook entitled: "orthofinder"
+3. In the jupyter notebook tab on your browser, open the notebook entitled: "orthofinder_raxML.ipynb"
    
 4. Main outputs:  
    *Newick Tree:*
@@ -54,13 +54,5 @@ It uses helper utilities from `jw_utils` and `orthofinder_utils`.
 9.  Use iTOL’s tools to style labels, branch support, etc.
 
 ---
-
-## Notable Implementation Details
-
-- **Biopython Phylo** used to read Newick trees; `tree.get_terminals()` gives leaf nodes.  
-- **RAxML outputs**:
-  * `RAxML_bestTree.*` — best topology  
-  * `RAxML_bipartitions.*` — includes support values  
-  * `RAxML_bipartitionsBranchLabels.*` — supports embedded as branch labels  
 
 
