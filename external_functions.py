@@ -211,8 +211,6 @@ def run_muscle(inp, output_fp, muscle_bin="muscle", extra_args=None):
 
 import math
 import pandas as pd
-import matplotlib.pyplot as plt
-import logomaker
 import tempfile
 import os
 import subprocess
