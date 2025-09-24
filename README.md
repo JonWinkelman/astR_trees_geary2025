@@ -5,7 +5,7 @@ It uses helper utilities from `jw_utils` and `orthofinder_utils`.
 
 ---
 
-# What It Does (Pipeline)
+# What It Does
 
 1. **Clone utilities** (`jw_utils`, `orthofinder_utils`) and import helpers.  
 2. **Download NCBI metadata & files** for the assemblies in `figure_genome_assemblies`; write a summary DataFrame. Uses NCBI Datasets CLI-backed workflow and moves `GFF`/proteomes into project dirs.  
