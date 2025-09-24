@@ -36,10 +36,13 @@ It uses helper utilities from `jw_utils` and `orthofinder_utils`.
 
 ## How to Run (assumes you have conda installed)
 
-1. Create an environment from `environment.yml`
-   `conda env create -f environment.yml'
-   `conda activate Geary_astR_trees` 
-3. Execute the script (adjusting or removing notebook-specific lines like `get_ipython()`).  
+1. Create an environment from `environment.yml`  
+   `conda env create -f environment.yml`  
+   `conda activate Geary_astR_trees`  
+2. Open jupyter-lab notebook in terminal. Will run on your default browser.
+   `jupyter-lab`
+3. In the jupyter notebook tab on your browser, open the notebook entitled: "orthofinder"
+   
 4. Outputs you should obtain:
    - `summary_data/AssemblyAccession_to_SpeciesName.json`
    - `astR_orthologs.faa` and `*.muscle.aln`
