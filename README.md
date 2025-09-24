@@ -34,7 +34,7 @@ It uses helper utilities from `jw_utils` and `orthofinder_utils`.
 
 ---
 
-## How to Run (assumes you have conda installed)
+## How to Run (assumes you have conda installed)  
 
 1. Create an environment from `environment.yml`  
    `conda env create -f environment.yml`  
