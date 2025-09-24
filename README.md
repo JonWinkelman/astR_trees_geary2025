@@ -40,7 +40,8 @@ This project was developed and tested on the following system:
 - **Machine**: Apple M4 Max  
 - **Memory**: 36 GB RAM  
 - **Operating System**: macOS Sequoia 15.5  
-- **Startup Disk**: Macintosh HD  
+- **Startup Disk**: Macintosh HD
+On this system and on this dataset, the whole notebook takes < 10 min to run. 
 
 Results and performance may differ on other hardware or OS versions.
 
