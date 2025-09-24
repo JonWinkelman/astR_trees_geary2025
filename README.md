@@ -1,4 +1,4 @@
-# README — Build an Acinetobacter Gene Tree and Relabel for iTOL
+# Build an Acinetobacter Gene Tree and Relabel for iTOL
 
 This script downloads selected **NCBI** genomes, runs **OrthoFinder** to find orthology/HOGs, extracts **AstR** ortholog protein sequences, aligns them with **MUSCLE**, infers a **RAxML** tree, then **relabels leaf names** for clean visualization in **iTOL**.  
 It uses helper utilities from `jw_utils` and `orthofinder_utils`.  
