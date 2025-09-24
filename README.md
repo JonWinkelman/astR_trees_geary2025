@@ -1,6 +1,6 @@
 # Build an Acinetobacter Gene Tree and Relabel for iTOL
 
-This script downloads selected **NCBI** genomes, runs **OrthoFinder** to find orthology/HOGs, extracts **AstR** ortholog protein sequences, aligns them with **MUSCLE**, infers a **RAxML** tree, then **relabels leaf names** for clean visualization in **iTOL**.  
+This script downloads selected **NCBI** genomes, runs **OrthoFinder** to find orthology/HOGs, extracts **AstR** ortholog protein sequences, aligns them with **MUSCLE**, infers a **RAxML** tree, then creates iTOL dataset to **relabel leaf names** for clean visualization in **iTOL**.  
 It uses helper utilities from `jw_utils` and `orthofinder_utils`.  
 
 ---
@@ -43,12 +43,15 @@ It uses helper utilities from `jw_utils` and `orthofinder_utils`.
    `jupyter-lab`
 3. In the jupyter notebook tab on your browser, open the notebook entitled: "orthofinder"
    
-4. Outputs you should obtain:
-   - `summary_data/AssemblyAccession_to_SpeciesName.json`
-   - `astR_orthologs.faa` and `*.muscle.aln`
-   - `raxML_output/RAxML_bipartitionsBranchLabels.AstR`
-   - `itol_annotations/RELABLE_RAxML_bipartitionsBranchLabels.astR`
-5. Upload the relabeled Newick file to **iTOL** via the Upload interface. Use iTOL’s tools to style labels, branch support, etc.
+4. Main outputs:
+   *Newick Tree:*
+   - `raxML_tree/raxML_output/RAxML_bipartitionsBranchLabels.AstR`
+   *iTOL Annotation File:*
+   - `raxML_tree/itol_annotations/RELABLE_RAxML_bipartitionsBranchLabels.astR`
+6. Upload the  Newick file to **iTOL** via the Upload interface.
+7. Upload itol annotation file to relable leaves.
+   - manually re-root tree on yersinia enterobacter branch.  
+9.  Use iTOL’s tools to style labels, branch support, etc.
 
 ---
 
