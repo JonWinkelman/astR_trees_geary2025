@@ -31,6 +31,22 @@ It uses helper utilities from `jw_utils` and `orthofinder_utils`.
 > * `jw_utils` — itol / ncbi / FASTA helpers  
 > * `orthofinder_utils` — parsers and OrthoFinder runner  
 > * `external_functions` — wrappers for MUSCLE, RAxML, etc.
+>
+## Environment and System Information
+
+### Hardware / Operating System
+This project was developed and tested on the following system:
+
+- **Machine**: Apple M4 Max  
+- **Memory**: 36 GB RAM  
+- **Operating System**: macOS Sequoia 15.5  
+- **Startup Disk**: Macintosh HD  
+
+Results and performance may differ on other hardware or OS versions.
+
+### Software Environment
+Package management was handled using **conda**.  
+To reproduce the software environment, use the provided `environment.yml` file:
 
 ---
 
