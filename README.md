@@ -34,16 +34,18 @@ It uses helper utilities from `jw_utils` and `orthofinder_utils`.
 
 ---
 
-## How to Run
+## How to Run (assumes you have conda installed)
 
-1. Activate your project environment (conda/venv) with all tools installed.  
-2. Execute the script (adjusting or removing notebook-specific lines like `get_ipython()`).  
-3. Outputs you should obtain:
+1. Create an environment from `environment.yml`
+   `conda env create -f environment.yml'
+   `conda activate Geary_astR_trees` 
+3. Execute the script (adjusting or removing notebook-specific lines like `get_ipython()`).  
+4. Outputs you should obtain:
    - `summary_data/AssemblyAccession_to_SpeciesName.json`
    - `astR_orthologs.faa` and `*.muscle.aln`
    - `raxML_output/RAxML_bipartitionsBranchLabels.AstR`
    - `itol_annotations/RELABLE_RAxML_bipartitionsBranchLabels.astR`
-4. Upload the relabeled Newick file to **iTOL** via the Upload interface. Use iTOL’s tools to style labels, branch support, etc.
+5. Upload the relabeled Newick file to **iTOL** via the Upload interface. Use iTOL’s tools to style labels, branch support, etc.
 
 ---
 
