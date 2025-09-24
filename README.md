@@ -43,10 +43,10 @@ It uses helper utilities from `jw_utils` and `orthofinder_utils`.
    `jupyter-lab`
 3. In the jupyter notebook tab on your browser, open the notebook entitled: "orthofinder"
    
-4. Main outputs:
+4. Main outputs:  
    *Newick Tree:*
-   - `raxML_tree/raxML_output/RAxML_bipartitionsBranchLabels.AstR`
-   *iTOL Annotation File:*
+   - `raxML_tree/raxML_output/RAxML_bipartitionsBranchLabels.AstR`  
+   *iTOL Annotation File:*  
    - `raxML_tree/itol_annotations/RELABLE_RAxML_bipartitionsBranchLabels.astR`
 6. Upload the  Newick file to **iTOL** via the Upload interface.
 7. Upload itol annotation file to relable leaves.
