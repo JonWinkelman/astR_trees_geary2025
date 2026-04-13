@@ -2,11 +2,27 @@ from Bio import Phylo
 from plotly import graph_objects as go
 import pandas as pd
 
-def get_x_coordinates(tree):
+def rotate_clade(tree, node_names):
+    """Reverse order of the internal nodes children, 'rotate' clade.
+    
+    node_names (iterable): list of node names to rotate
+    tree (Bio.Phylo tree)
+    """
+    for node_name in node_names:
+        target = next(tree.find_clades(node_name))
+        target.clades.reverse()
+
+
+
+def get_x_coordinates(tree, ignore_branch_lengths=False):
     """Associates to  each clade an x-coord.
        returns dict {clade: x-coord}
     """
-    xcoords = tree.depths()
+
+    if ignore_branch_lengths:
+        xcoords = tree.depths(unit_branch_lengths=True)
+    else:
+        xcoords = tree.depths()
     # tree.depth() maps tree clades to depths (by branch length).
     # returns a dict {clade: depth} where clade runs over all Clade instances of the tree, and depth
     # is the distance from root to clade
@@ -65,33 +81,124 @@ def get_clade_lines(orientation='horizontal', y_curr=0, x_start=0, x_curr=0, y_b
 
 
 
-def draw_clade(clade, x_start, line_shapes, line_color='rgb(15,15,15)', line_width=1, x_coords=0, y_coords=0, 
-               cl_to_highlight = None, highlight_line_width=2):
+# def draw_clade(clade, x_start, line_shapes, line_color='rgb(15,15,15)', line_width=1, x_coords=0, y_coords=0, 
+#                cl_to_highlight = None, highlight_line_width=2, ignore_branch_lengths=False):
+#     """Recursively draw the tree branches, down from the given clade"""
+
+#     x_curr = x_coords[clade]
+#     y_curr = y_coords[clade]
+#     if cl_to_highlight:
+#         clade_names_to_highlight= [cl.name for cl in get_x_coordinates(cl_to_highlight, ignore_branch_lengths)]
+#         if clade.name in clade_names_to_highlight:
+#             line_width = highlight_line_width
+#     # Draw a horizontal line from start to here
+#     branch_line = get_clade_lines(orientation='horizontal', y_curr=y_curr, x_start=x_start, x_curr=x_curr,
+#                                   line_color=line_color, line_width=line_width)
+
+#     line_shapes.append(branch_line)
+
+#     if clade.clades:
+#         # Draw a vertical line connecting all children
+#         y_top = y_coords[clade.clades[0]]
+#         y_bot = y_coords[clade.clades[-1]]
+
+#         line_shapes.append(get_clade_lines(orientation='vertical', x_curr=x_curr, y_bot=y_bot, y_top=y_top,
+#                                            line_color=line_color, line_width=line_width))
+
+#         # Draw descendants
+#         for child in clade:
+#             draw_clade(child, x_curr, line_shapes, x_coords=x_coords, y_coords=y_coords, cl_to_highlight=cl_to_highlight, highlight_line_width = highlight_line_width)
+
+
+
+def draw_clade(
+    clade,
+    x_start,
+    line_shapes,
+    line_color='rgb(15,15,15)',
+    line_width=1,
+    x_coords=0,
+    y_coords=0, 
+    cl_to_highlight=None,
+    highlight_line_width=2,
+    ignore_branch_lengths=False
+):
     """Recursively draw the tree branches, down from the given clade"""
 
     x_curr = x_coords[clade]
     y_curr = y_coords[clade]
-    if cl_to_highlight:
-        clade_names_to_highlight= [cl.name for cl in get_x_coordinates(cl_to_highlight)]
-        if clade.name in clade_names_to_highlight:
-            line_width = highlight_line_width
-    # Draw a horizontal line from start to here
-    branch_line = get_clade_lines(orientation='horizontal', y_curr=y_curr, x_start=x_start, x_curr=x_curr,
-                                  line_color=line_color, line_width=line_width)
 
+    # -----------------------------------------------------------
+    # NEW: Normalize cl_to_highlight into a set of clade names
+    # -----------------------------------------------------------
+    if cl_to_highlight:
+        # If user passed a *single clade*, make it a list
+        if not isinstance(cl_to_highlight, (list, tuple, set)):
+            cl_to_highlight = [cl_to_highlight]
+
+        # Collect names for ALL highlighted clades and their descendants
+        highlight_names = []
+        for clh in cl_to_highlight:
+            highlight_names.extend(
+                [cl.name for cl in get_x_coordinates(clh, ignore_branch_lengths)]
+            )
+
+        highlight_set = set(highlight_names)
+    else:
+        highlight_set = set()
+
+    # -----------------------------------------------------------
+    # Highlight this branch if needed
+    # -----------------------------------------------------------
+    if clade.name in highlight_set:
+        line_width = highlight_line_width
+
+    # -----------------------------------------------------------
+    # Draw horizontal line
+    # -----------------------------------------------------------
+    branch_line = get_clade_lines(
+        orientation='horizontal',
+        y_curr=y_curr,
+        x_start=x_start,
+        x_curr=x_curr,
+        line_color=line_color,
+        line_width=line_width
+    )
     line_shapes.append(branch_line)
 
+    # -----------------------------------------------------------
+    # If internal node, draw vertical connector and recurse
+    # -----------------------------------------------------------
     if clade.clades:
-        # Draw a vertical line connecting all children
+        # Vertical line connecting children
         y_top = y_coords[clade.clades[0]]
         y_bot = y_coords[clade.clades[-1]]
 
-        line_shapes.append(get_clade_lines(orientation='vertical', x_curr=x_curr, y_bot=y_bot, y_top=y_top,
-                                           line_color=line_color, line_width=line_width))
+        line_shapes.append(
+            get_clade_lines(
+                orientation='vertical',
+                x_curr=x_curr,
+                y_top=y_top,
+                y_bot=y_bot,
+                line_color=line_color,
+                line_width=line_width
+            )
+        )
 
-        # Draw descendants
+        # Recurse into each child
         for child in clade:
-            draw_clade(child, x_curr, line_shapes, x_coords=x_coords, y_coords=y_coords, cl_to_highlight=cl_to_highlight, highlight_line_width = highlight_line_width)
+            draw_clade(
+                child,
+                x_curr,
+                line_shapes,
+                line_color=line_color,
+                line_width=line_width,
+                x_coords=x_coords,
+                y_coords=y_coords,
+                cl_to_highlight=cl_to_highlight,
+                highlight_line_width=highlight_line_width,
+                ignore_branch_lengths=ignore_branch_lengths
+            )
 
 
 
@@ -236,7 +343,7 @@ def make_baseline_trace(shift, x_y_coords, max_x, bar_thickness, title=''):
 #############base tree functions###########################################################################################
 def create_tree(tree, title=None, intern_node_label=None,  node_color_dict=None, in_node_size=6, t_node_size=10,
                  label_mode='markers', height=850, node_size_dict=None, cl_to_highlight=None, highlight_line_width=2,
-                 hover_text = None):
+                 hover_text = None, ignore_branch_lengths=False):
     """Return a plotly tree  
 
     Parameters:  
@@ -249,7 +356,7 @@ def create_tree(tree, title=None, intern_node_label=None,  node_color_dict=None,
     label_mode (str): options 'markers', 'markers+text'. 'markers' - only show text on hover, 'markers+text' - show text always
     """
 
-    x_coords = get_x_coordinates(tree)
+    x_coords = get_x_coordinates(tree, ignore_branch_lengths)
     y_coords = get_y_coordinates(tree)
     line_shapes = []
     draw_clade(tree.root, 0, line_shapes, line_color='rgb(25,25,25)', line_width=1, x_coords=x_coords,

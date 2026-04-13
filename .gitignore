@@ -1,0 +1,13 @@
+set_up_dash_app.ipynb
+results
+rnaseq
+orthofinder_utils
+ncbi_dataset
+.DS_Store
+.ipynb_checkpoints/
+__pycache__/
+hmmsearch_raw.txt
+jw_utils
+20251212_16s_amplicon
+orthofinder_analysis
+250902_AstR_manuscript
