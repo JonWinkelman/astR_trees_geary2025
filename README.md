@@ -1,6 +1,6 @@
-# Build an Acinetobacter Gene Tree and Relabel for iTOL
+# Builds Gene and Species trees and makes iTOL annotation files for Geary, Ren et al 2026 
 
-This script downloads selected **NCBI** genomes, runs **OrthoFinder** to find orthology/HOGs, extracts **AstR** ortholog protein sequences, aligns them with **MUSCLE**, infers a **RAxML** tree, then creates iTOL dataset to **relabel leaf names** for clean visualization in **iTOL**.  
+This script downloads selected **NCBI** genomes, runs **OrthoFinder** to find orthology/HOGs, extracts **AstR** ortholog protein sequences, aligns them with **MUSCLE**, infers a **RAxML** tree, then creates iTOL dataset to **relabel leaf names** for visualization in **iTOL**.  
 It uses helper utilities from `jw_utils` and `orthofinder_utils`.  
 
 ---
@@ -58,14 +58,16 @@ To reproduce the software environment, use the provided `environment.yml` file:
    `conda activate Geary_astR_trees`  
 2. Open jupyter-lab notebook in terminal. Will run on your default browser.  
    `jupyter-lab`
-3. In the jupyter notebook tab on your browser, open the notebook entitled: "orthofinder_raxML.ipynb"  
+3. To make trees in figure 1, In the jupyter notebook tab on your browser, open the notebook entitled: "4_orthofinder_raxML.ipynb"  
    
 4. Main outputs:  
    *Newick Tree:*  
-   - `raxML_tree/raxML_output/RAxML_bipartitionsBranchLabels.AstR`
+   - `/results/4_orthofinder_raxML/raxML_tree/raxML_output/RAxML_bipartitionsBranchLabels.AstR`
+   - `./results/4_orthofinder_raxML/bac120_tree/bac120_tree.nwk`
      
    *iTOL Annotation File:*  
-   - `raxML_tree/itol_annotations/RELABLE_RAxML_bipartitionsBranchLabels.astR`  
+   - `./results/4_orthofinder_raxML/raxML_tree/itol_annotations/RELABLE_RAxML_bipartitionsBranchLabels.astR`  
+   - `./results/4_orthofinder_raxML/itol_annotations/RELABLE_bac120_tree.txt`
 6. Upload the  Newick file to **iTOL** via the Upload interface.
 7. Upload itol annotation file to relable leaves.
    - manually re-root tree on yersinia enterobacter branch.  
