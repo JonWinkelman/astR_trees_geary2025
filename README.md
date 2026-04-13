@@ -74,7 +74,9 @@ To reproduce the software environment, use the provided `environment.yml` file:
 9.  Use iTOL’s tools to style labels, branch support, etc.
 10. To make Acinetobacter tree in supplemental figure 1, In the jupyter notebook tab on your browser, open the notebook entitled: "3_operon_structure_analysis.ipynb"
    -  This requires data generated from OrthoFinder analysis of 221 Acinetobacter and outgroup genomes. Too much to save to github. But code to run on this dataset and results are here. 
-
+<p align="center">
+  <img src="assets/images/Acinetobacter_species_tree.png" width="600">
+</p>
 ---
 
 
